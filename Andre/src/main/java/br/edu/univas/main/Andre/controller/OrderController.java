@@ -26,31 +26,31 @@ public class OrderController {
 
 	@GetMapping("")
 	@ResponseStatus(HttpStatus.OK)
-	public List<OrderDTO> getAllProducts() {
+	public List<OrderDTO> getAllOrders() {
 		return service.findAll();
 	}
 
 	@GetMapping("/{orderNumber}")
-	public OrderDTO getProductById(@PathVariable Integer code) {
+	public OrderDTO getOrderById(@PathVariable Integer code) {
 		OrderEntity entity = service.findById(code);
 		return OrderEntityConverter.toDTO(entity);
 	}
 
 	@GetMapping("/active")
 	@ResponseStatus(HttpStatus.OK)
-	public List<OrderDTO> getAllProductsActive() {
+	public List<OrderDTO> getAllOrdersActive() {
 		return service.findByActive(true);
 	}
 
 	@PostMapping("")
 	@ResponseStatus(HttpStatus.CREATED)
-	public void createProduct(@RequestBody OrderDTO order) {
+	public void createOrder(@RequestBody OrderDTO order) {
 		service.createOrder(order);
 	}
 
 	@PutMapping("/{orderNumber}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void updateProduct(@RequestBody OrderDTO dto, @PathVariable Integer orderNumber) {
+	public void updateOrder(@RequestBody OrderDTO dto, @PathVariable Integer orderNumber) {
 		service.updateOrder(dto, orderNumber);
 	}
 }
