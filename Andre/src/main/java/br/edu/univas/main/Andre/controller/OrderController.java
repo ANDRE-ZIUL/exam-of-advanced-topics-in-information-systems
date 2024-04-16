@@ -31,8 +31,8 @@ public class OrderController {
 	}
 
 	@GetMapping("/{orderNumber}")
-	public OrderDTO getOrderById(@PathVariable Integer code) {
-		OrderEntity entity = service.findById(code);
+	public OrderDTO getOrderById(@PathVariable Integer orderNumber) {
+		OrderEntity entity = service.findById(orderNumber);
 		return OrderEntityConverter.toDTO(entity);
 	}
 
