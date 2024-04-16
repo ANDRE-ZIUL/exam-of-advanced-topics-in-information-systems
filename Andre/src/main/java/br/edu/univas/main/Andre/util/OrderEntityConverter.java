@@ -1,8 +1,11 @@
 package br.edu.univas.main.Andre.util;
 
+import org.springframework.stereotype.Component;
+
 import br.edu.univas.main.Andre.dto.OrderDTO;
 import br.edu.univas.main.Andre.entities.OrderEntity;
 
+@Component
 public class OrderEntityConverter {
 	public static OrderDTO toDTO(OrderEntity order) {
 		return new OrderDTO(
