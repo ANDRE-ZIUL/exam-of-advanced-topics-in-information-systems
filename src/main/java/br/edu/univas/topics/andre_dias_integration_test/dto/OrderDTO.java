@@ -2,8 +2,6 @@ package br.edu.univas.topics.andre_dias_integration_test.dto;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,13 +14,11 @@ import lombok.ToString;
 @Getter
 @ToString
 public class OrderDTO {
-	private long orderNumber;
-	private long productid;
-	private long cpf;
-	private long amount;
+	private int orderNumber;
+	private int productid;
+	private int cpf;
+	private int amount;
 	private Date dateTimeSale;
-	private double value;
-
-	@JsonIgnore
+	private float productValue;
 	private boolean active;
 }

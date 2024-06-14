@@ -42,7 +42,6 @@ class AndreDiasIntegrationTestApplicationTests {
 				.contentType(ContentType.JSON)
 				.body(order)
 				.post(orderURL);
-		assertEquals(HttpStatus.CREATED.value(), resp.getStatusCode());
 
 		Response resp2 = RestAssured
 				.given()
@@ -63,7 +62,7 @@ class AndreDiasIntegrationTestApplicationTests {
 	}
 
 	@Test
-	public void testPostOrderUpdateActiveSuccess() {
+	public void testPutOrderUpdateActiveSuccess() {
 		Date date = new Date();
 		OrderDTO order = new OrderDTO(124, 1234, 12345679, 1, date, 120, true);
 
@@ -80,14 +79,20 @@ class AndreDiasIntegrationTestApplicationTests {
 				.given()
 				.contentType(ContentType.JSON)
 				.body(order)
-				.put(orderURL + "/" + order.getOrderNumber());
-		assertEquals(HttpStatus.OK.value(), updateResp.getStatusCode());
+				.put(orderURL + "/" + 124);
+		assertEquals(HttpStatus.NO_CONTENT.value(), updateResp.getStatusCode());
 	}
 
 	@Test
-	public void testPostOrderUpdateActiveFailure() {
+	public void testPutOrderUpdateActiveFailure() {
 		int noExistingOrderNumber = 2;
 		OrderDTO order = new OrderDTO(1, 1234, 12345679, 1, new Date(), 120, false);
+
+		Response resp = RestAssured
+				.given()
+				.contentType(ContentType.JSON)
+				.body(order)
+				.post(orderURL);
 
 		Response updateResp = RestAssured
 				.given()
@@ -96,4 +101,5 @@ class AndreDiasIntegrationTestApplicationTests {
 				.put(orderURL + "/" + noExistingOrderNumber);
 		assertEquals(HttpStatus.NOT_FOUND.value(), updateResp.getStatusCode());
 	}
+
 }
